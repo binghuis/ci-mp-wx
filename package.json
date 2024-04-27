@@ -1,0 +1,33 @@
+{
+  "name": "ci-mp-weixin",
+  "version": "1.0.0",
+  "description": "",
+  "files": [
+    "dist"
+  ],
+  "bin": {},
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "NODE_ENV=development tsup",
+    "build": "NODE_ENV=production tsup"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "eslint": "^9.1.1",
+    "prettier": "^3.2.5",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@bit2byte/nano-json": "^0.1.1",
+    "@clack/prompts": "^0.7.0",
+    "kleur": "^4.1.5",
+    "miniprogram-ci": "^1.9.15",
+    "semver": "^7.6.0",
+    "type-fest": "^4.17.0"
+  }
+}
