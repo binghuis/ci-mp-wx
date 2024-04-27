@@ -1,24 +1,64 @@
 import NanoJson from '@bit2byte/nano-json';
 import p from '@clack/prompts';
+import { bundleRequire } from 'bundle-require';
+import JoyCon from 'joycon';
 import kleur from 'kleur';
 import { Project, upload } from 'miniprogram-ci';
+import { ICreateProjectOptions } from 'miniprogram-ci/dist/@types/ci/project';
+import { MiniProgramCI } from 'miniprogram-ci/dist/@types/types';
 import path from 'path';
 import semver from 'semver';
 import { PackageJson } from 'type-fest';
 
-async function main() {
-  console.log(kleur.bgYellow('请使用 yarn 安装项目依赖，否则可能会出现上传失败的情况'));
-  console.log(kleur.bgGreen('yarn 安装：https://classic.yarnpkg.com/en/docs/install'));
+export type CIMpWXConfig = {
+  project: ICreateProjectOptions;
+  upload: {
+    setting?: MiniProgramCI.ICompileSettings;
+    robot?: number;
+    threads?: number;
+    useCOS?: boolean;
+    onProgressUpdate?: (task: MiniProgramCI.ITaskStatus | string) => void;
+    allowIgnoreUnusedFiles?: boolean;
+  };
+};
 
-  const project = new Project({
-    appid: '',
-    type: 'miniProgram',
-    projectPath: 'dist/build/mp-weixin',
-    privateKeyPath: 'private.key',
-    ignores: ['node_modules/**/*'],
+const cancel = (message?: string) => {
+  p.cancel(message ?? '✖ 已取消');
+  process.exit(0);
+};
+
+async function main() {
+  p.log.info(kleur.yellow('推荐使用 yarn 管理依赖，否则可能出现上传失败'));
+  p.log.message(kleur.green('yarn 安装：https://classic.yarnpkg.com/en/docs/install'));
+
+  const cwd = process.cwd();
+  const configJoycon = new JoyCon();
+  const configPath = await configJoycon.resolve({
+    files: ['ci-mp-wx.config.ts', 'ci-mp-wx.config.mts'],
+    cwd,
+    stopDir: path.parse(cwd).root,
+  });
+  const { mod } = await bundleRequire({
+    filepath: configPath ?? '',
   });
 
-  const pkg = new NanoJson<PackageJson>(path.resolve(__dirname, '../package.json'));
+  const config: CIMpWXConfig = mod.default;
+
+  if (!config.project.privateKeyPath) {
+    cancel('未配置 privateKeyPath');
+  }
+
+  const privateKeyPath = path.join(cwd, config.project.privateKeyPath ?? '');
+
+  const project = new Project({
+    appid: config.project.appid,
+    type: config.project.type ?? 'miniProgram',
+    projectPath: config.project.projectPath ?? 'dist/build/mp-weixin',
+    privateKeyPath,
+    ignores: config.project.ignores ?? ['node_modules/**/*'],
+  });
+
+  const pkg = new NanoJson<PackageJson>(path.join(cwd, './package.json'));
 
   await pkg.r();
 
@@ -68,7 +108,13 @@ async function main() {
       minifyWXML: true,
       minifyWXSS: true,
       autoPrefixWXSS: true,
+      ...config.upload.setting,
     },
+    robot: config.upload.robot,
+    threads: config.upload.threads,
+    useCOS: config.upload.useCOS,
+    onProgressUpdate: config.upload.onProgressUpdate,
+    allowIgnoreUnusedFiles: config.upload.allowIgnoreUnusedFiles,
   });
   if (pkg.d) {
     pkg.d.version = commit.version;

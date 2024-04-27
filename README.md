@@ -1,1 +1,1 @@
-# ci-mp-weixin
+# ci-mp-wx
