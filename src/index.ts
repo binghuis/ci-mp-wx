@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 import NanoJson from '@bit2byte/nano-json';
 import p from '@clack/prompts';
 import { bundleRequire } from 'bundle-require';
