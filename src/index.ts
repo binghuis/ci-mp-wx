@@ -14,7 +14,7 @@ import { PackageJson } from 'type-fest';
 
 export type CIMpWXConfig = {
   project: ICreateProjectOptions;
-  upload: {
+  upload?: {
     setting?: MiniProgramCI.ICompileSettings;
     robot?: number;
     threads?: number;
@@ -111,13 +111,13 @@ async function main() {
       minifyWXML: true,
       minifyWXSS: true,
       autoPrefixWXSS: true,
-      ...config.upload.setting,
+      ...config.upload?.setting,
     },
-    robot: config.upload.robot,
-    threads: config.upload.threads,
-    useCOS: config.upload.useCOS,
-    onProgressUpdate: config.upload.onProgressUpdate,
-    allowIgnoreUnusedFiles: config.upload.allowIgnoreUnusedFiles,
+    robot: config.upload?.robot,
+    threads: config.upload?.threads,
+    useCOS: config.upload?.useCOS,
+    onProgressUpdate: config.upload?.onProgressUpdate,
+    allowIgnoreUnusedFiles: config.upload?.allowIgnoreUnusedFiles,
   });
   if (pkg.d) {
     pkg.d.version = commit.version;
