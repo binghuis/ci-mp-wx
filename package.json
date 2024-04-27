@@ -8,6 +8,7 @@
   "bin": {
     "ci-mp-wx": "lib/index.js"
   },
+  "types": "lib/index.d.ts",
   "main": "lib/index.js",
   "scripts": {
     "dev": "NODE_ENV=development tsup",
