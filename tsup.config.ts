@@ -7,7 +7,7 @@ const isProd = env === 'production';
 
 export default defineConfig({
   entry: ['./src/index.ts'],
-  outDir: 'dist',
+  outDir: 'lib',
   clean: true,
   dts: true,
   format: ['cjs'],

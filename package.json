@@ -1,14 +1,14 @@
 {
   "name": "ci-mp-wx",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "",
   "files": [
-    "dist"
+    "lib"
   ],
   "bin": {
-    "ci-mp-wx": "dist/index.js"
+    "ci-mp-wx": "lib/index.js"
   },
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "dev": "NODE_ENV=development tsup",
     "build": "NODE_ENV=production tsup"

@@ -97,6 +97,7 @@ async function main() {
       },
     },
   );
+
   p.log.info(kleur.green('代码开始上传...'));
   const uploadResult = await upload({
     project,
@@ -127,6 +128,6 @@ async function main() {
 }
 
 main().catch((e) => {
-  p.log.error(e);
+  p.log.error(kleur.red(e.message));
   process.exit(1);
 });
