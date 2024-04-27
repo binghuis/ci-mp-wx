@@ -5,6 +5,7 @@
 
 import { CIMpWXConfig } from 'ci-mp-wx';
 
+// https://www.npmjs.com/package/miniprogram-ci
 const config: CIMpWXConfig = {
   project: {
     appid: '',
