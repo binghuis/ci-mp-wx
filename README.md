@@ -32,6 +32,19 @@ const config: CIMpWXConfig = {
     type: 'miniProgram', // 项目类型
     projectPath: 'dist/build/mp-weixin', // 生产环境代码路径
     privateKeyPath: 'private.key', // 代码上传密钥文件路径
+    ignores: ['node_modules/**/*'],
+  },
+  upload: {
+    setting: {
+      es6: true,
+      es7: true,
+      minify: true,
+      minifyJS: true,
+      minifyWXML: true,
+      minifyWXSS: true,
+      autoPrefixWXSS: true,
+    },
+    onProgressUpdate: console.log,
   },
 };
 
