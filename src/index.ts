@@ -29,6 +29,8 @@ const cancel = (message?: string) => {
   process.exit(0);
 };
 
+const files = ['ci-mp-wx.config.ts', 'ci-mp-wx.config.mts'];
+
 async function main() {
   p.log.info(kleur.yellow('推荐使用 yarn 管理依赖，否则可能出现上传失败'));
   p.log.message(kleur.green('yarn 安装：https://classic.yarnpkg.com/en/docs/install'));
@@ -36,7 +38,7 @@ async function main() {
   const cwd = process.cwd();
   const configJoycon = new JoyCon();
   const configPath = await configJoycon.resolve({
-    files: ['ci-mp-wx.config.ts', 'ci-mp-wx.config.mts'],
+    files,
     cwd,
     stopDir: path.parse(cwd).root,
   });
@@ -54,8 +56,8 @@ async function main() {
 
   const project = new Project({
     appid: config.project.appid,
-    type: config.project.type ?? 'miniProgram',
-    projectPath: config.project.projectPath ?? 'dist/build/mp-weixin',
+    type: config.project.type,
+    projectPath: config.project.projectPath,
     privateKeyPath,
     ignores: config.project.ignores ?? ['node_modules/**/*'],
   });

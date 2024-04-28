@@ -1,7 +1,7 @@
 {
   "name": "ci-mp-wx",
-  "version": "0.0.5",
-  "description": "",
+  "version": "0.1.0",
+  "description": "微信小程序 CI 工具。",
   "files": [
     "lib"
   ],
@@ -14,7 +14,12 @@
     "dev": "NODE_ENV=development tsup",
     "build": "NODE_ENV=production tsup"
   },
-  "keywords": [],
+  "keywords": [
+    "ci",
+    "miniprogram-ci",
+    "uniapp-ci",
+    "mp-weixin"
+  ],
   "author": "",
   "license": "MIT",
   "devDependencies": {
