@@ -32,7 +32,7 @@ const cancel = (message?: string) => {
 const files = ['ci-mp-wx.config.ts', 'ci-mp-wx.config.mts'];
 
 async function main() {
-  p.log.info(kleur.yellow('推荐使用 yarn 管理依赖，否则可能出现上传失败'));
+  p.log.info(kleur.yellow('推荐使用 yarn 管理依赖，否则可能因依赖不全导致报错'));
   p.log.message(kleur.green('yarn 安装：https://classic.yarnpkg.com/en/docs/install'));
 
   const cwd = process.cwd();

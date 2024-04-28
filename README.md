@@ -6,7 +6,7 @@
 
 ## 安装
 
-`pnpm i ci-mp-wx -D`
+`yarn add ci-mp-wx -D`
 
 ## 用法
 
