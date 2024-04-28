@@ -8,16 +8,6 @@
 
 `yarn add ci-mp-wx -D`
 
-## 用法
-
-构建之后执行 `ci-mp-wx` 脚本。
-
-```json
-"scripts": {
-    "build:mp-weixin": "uni build -p mp-weixin && ci-mp-wx",
-}
-```
-
 ## 配置
 
 项目根目录创建配置文件：`ci-mp-wx.config.ts`
@@ -49,4 +39,14 @@ const config: CIMpWXConfig = {
 };
 
 export default config;
+```
+
+## 用法
+
+构建之后执行 `ci-mp-wx` 脚本。
+
+```json
+"scripts": {
+    "build:mp-weixin": "uni build -p mp-weixin && ci-mp-wx",
+}
 ```
