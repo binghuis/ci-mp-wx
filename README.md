@@ -4,6 +4,8 @@
 
 [![npm](https://img.shields.io/npm/v/ci-mp-wx?logo=npm)](https://www.npmjs.com/package/ci-mp-wx)
 
+<img src='https://raw.githubusercontent.com/binghuis/assets/main/ci-mp-wx/record.gif' width='480px' />
+
 ## 安装
 
 `yarn add ci-mp-wx -D`

@@ -1,6 +1,6 @@
 {
   "name": "ci-mp-wx",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "微信小程序 CI 工具。",
   "files": [
     "lib"

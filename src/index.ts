@@ -126,7 +126,7 @@ async function main() {
   }
   await pkg.w();
   console.log(uploadResult);
-  p.log.success(kleur.green('代码上传完成！'));
+  p.log.success(kleur.green('代码上传完成 🎉'));
 }
 
 main().catch((e) => {
